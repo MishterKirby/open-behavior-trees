@@ -9,25 +9,24 @@ namespace OpenBehaviorTrees {
         public bool repeatForever;
 
         [Tooltip("The number of times the repeater node should repeat.")]
-        [DrawIf("repeatForever", true)]
         public int repeatCount;
         private int timesRepeated = 0;
         [Tooltip("The result that is returned when the node has repeated [repeatCount] times.")]
         public BehaviorTreeNodeResult resultOnComplete = BehaviorTreeNodeResult.success;
 
-        protected override BehaviorTreeNodeResult Evaluate(BehaviorTree behaviorTree)
+        public override BehaviorTreeNodeResult Evaluate(BehaviorTree behaviorTree)
         {
             
             if(repeatForever)
             {
-                child.Tick(behaviorTree);
+                child.Evaluate(behaviorTree);
                 return BehaviorTreeNodeResult.running;
             }
             
             if(timesRepeated < repeatCount)
             {
                 timesRepeated++;
-                child.Tick(behaviorTree);
+                child.Evaluate(behaviorTree);
                 return BehaviorTreeNodeResult.running;
             }
             else

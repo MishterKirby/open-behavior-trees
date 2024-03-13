@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace OpenBehaviorTrees {
     public class BehaviorTree : MonoBehaviour
@@ -18,10 +17,7 @@ namespace OpenBehaviorTrees {
         public bool runningBehavior;
         [HideInInspector]
         public BehaviorTreeNode activeSubTree;
-        [HideInInspector]
-        public UnityEvent onTick;
-
-
+        
         private bool setup = false;
 
         public void Setup()
@@ -70,13 +66,11 @@ namespace OpenBehaviorTrees {
 
             if (activeSubTree == null)
             {
-                result = rootNode.Tick(this);
-                onTick?.Invoke();
+                result = rootNode.Evaluate(this);
             }
             else
             {
-                result = activeSubTree.Tick(this);
-                onTick?.Invoke();
+                result = activeSubTree.Evaluate(this);
             }
 
             while (result == BehaviorTreeNodeResult.running)
@@ -90,13 +84,11 @@ namespace OpenBehaviorTrees {
                 yield return null;
                 if (activeSubTree == null)
                 {
-                    result = rootNode.Tick(this);
-                    onTick?.Invoke();
+                    result = rootNode.Evaluate(this);
                 }
                 else
                 {
-                    result = activeSubTree.Tick(this);
-                    onTick?.Invoke();
+                    result = activeSubTree.Evaluate(this);
                 }
             }
 

@@ -13,7 +13,7 @@ namespace OpenBehaviorTrees {
         public float waitTime = 1f;
         private float counter = 0;
 
-        protected override BehaviorTreeNodeResult Evaluate(BehaviorTree behaviorTree)
+        public override BehaviorTreeNodeResult Evaluate(BehaviorTree behaviorTree)
         {
             switch (timeType)
             {

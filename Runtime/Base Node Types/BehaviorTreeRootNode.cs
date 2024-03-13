@@ -6,9 +6,9 @@ namespace OpenBehaviorTrees {
     //Special Root Node
     public class BehaviorTreeRootNode : DecoratorNode
     {
-        protected override BehaviorTreeNodeResult Evaluate(BehaviorTree behaviorTree)
+        public override BehaviorTreeNodeResult Evaluate(BehaviorTree behaviorTree)
         {
-            return child.Tick(behaviorTree);
+            return child.Evaluate(behaviorTree);
         }
 
         public override BehaviorTreeNode Clone()

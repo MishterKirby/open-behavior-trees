@@ -5,9 +5,10 @@ using UnityEngine;
 namespace OpenBehaviorTrees {
     public class AlwaysSucceedNode : DecoratorNode
     {
-        protected override BehaviorTreeNodeResult Evaluate(BehaviorTree behaviorTree)
+        public override BehaviorTreeNodeResult Evaluate(BehaviorTree behaviorTree)
         {
-            child.Tick(behaviorTree);
+            child.Evaluate(behaviorTree);
+
             return BehaviorTreeNodeResult.success;
         }
 

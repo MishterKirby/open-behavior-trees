@@ -10,9 +10,9 @@ namespace OpenBehaviorTrees
         [ReadOnly]
         public BehaviorTreeRootNode subtree;
 
-        protected override BehaviorTreeNodeResult Evaluate(BehaviorTree behaviorTree)
+        public override BehaviorTreeNodeResult Evaluate(BehaviorTree behaviorTree)
         {
-            return subtree.Tick(behaviorTree);
+            return subtree.Evaluate(behaviorTree);
         }
 
         public override BehaviorTreeNode Clone()

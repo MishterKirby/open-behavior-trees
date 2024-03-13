@@ -9,7 +9,7 @@ namespace OpenBehaviorTrees
         [Tooltip("The return value returned when Children nodes return mixed results.")]
         public BehaviorTreeNodeResult defaultToResult;
 
-        protected override BehaviorTreeNodeResult Evaluate(BehaviorTree behaviorTree)
+        public override BehaviorTreeNodeResult Evaluate(BehaviorTree behaviorTree)
         {
             bool successResult = false;
             bool runningResult = false;
@@ -17,7 +17,7 @@ namespace OpenBehaviorTrees
             //Run all children, check for result types being found
             for(int i = 0; i < children.Count; i++)
             {
-                BehaviorTreeNodeResult result = children[i].Tick(behaviorTree);
+                BehaviorTreeNodeResult result = children[i].Evaluate(behaviorTree);
                 switch (result)
                 {
                     case BehaviorTreeNodeResult.running: runningResult = true; break;
