@@ -234,7 +234,7 @@ namespace OpenBehaviorTrees
                     if ((!root && !obs.Contains(currentNode)) || (parent != null && path != AssetDatabase.GetAssetPath(parent)))
                     {
                         AssetDatabase.AddObjectToAsset(newNode, parent);
-                        //newNode.name = ("(" + GenerateOrderString(tempQueue) + ") " + newNode.name);
+                        newNode.name = ("(" + GenerateOrderString(tempQueue) + ") " + newNode.name);
                         EditorUtility.SetDirty(parent);
                         return newNode;
                     }
